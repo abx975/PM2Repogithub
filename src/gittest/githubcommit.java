@@ -1,6 +1,6 @@
 package gittest;
 
 public class githubcommit {
-//	ich möchte das Hochladen testen.
+//	ich moechte das Hochladen testen.
 //	Test1.0
 }
