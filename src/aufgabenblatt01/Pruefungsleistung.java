@@ -1,4 +1,11 @@
-package Aufgabenblatt01;
+package aufgabenblatt01;
+
+/**
+ * Diese Klasse repraesentiert Pruefungsleistungen
+ * 
+ * @author Nils Eggebrecht, Eduard Veit
+ * @version 1.0
+ */
 
 public class Pruefungsleistung {
 	String modulName;
