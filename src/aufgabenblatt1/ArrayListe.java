@@ -57,7 +57,7 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 	 * @param mindestKapazitaet
 	 *            gibt die Größe des neuen Arrays an.
 	 * 
-	 * */
+	 */
 	private void sichereKapazitaetZu(int mindestKapazitaet) {
 		int alteKapazitaet = elemente.length;
 		if (mindestKapazitaet > alteKapazitaet) {
@@ -148,6 +148,7 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 	public int getAnzahlElemente() {
 		return anzahlElemente;
 	}
+
 	/**
 	 * Sucht das kleinste Element im Array.
 	 * 
@@ -174,12 +175,6 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 		}
 		return kleinstesElement;
 
-		// LinkedList<Typ> list = new LinkedList<Typ>();
-		// for (Object obj: elemente){
-		// list.add((Typ)(obj));
-		// }
-		// Collections.sort(list);
-		// return list.get(0);
 	}
 
 }

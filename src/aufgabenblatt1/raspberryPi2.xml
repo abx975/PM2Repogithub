@@ -1,17 +1,14 @@
 <?xml version = "1.0" encoding="UTF-8"?>
 <rechner name="raspberry Pi - Model b" ip="192.168.2.1">
-<sensoren>
-<ort>Wohnzimmer</ort>
-<typ>Temperatur</typ>
-<wert>"22.4"</wert>
-</sensoren>
-<sensoren>
-<ort>Kueche</ort>
-<wert>"-0.2323"</wert>
-</sensoren>
-<sensoren>
-<ort>Badezimmer</ort>
-<typ>Luftfeuchtigkeit</typ>
-<wert>"63.8"</wert>
-</sensoren>
+	<sensoren wert="22.4">
+		<ort>Wohnzimmer</ort>
+		<typ>Temperatur</typ>
+	</sensoren>
+	<sensoren wert="-0.2323">
+		<ort>Kueche</ort>
+	</sensoren>
+	<sensoren wert="63.8">
+		<ort>Badezimmer</ort>
+		<typ>Luftfeuchtigkeit</typ>
+	</sensoren>
 </rechner>
