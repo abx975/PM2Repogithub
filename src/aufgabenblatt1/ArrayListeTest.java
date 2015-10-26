@@ -95,7 +95,10 @@ public class ArrayListeTest {
 		liste2.hinzufuegen(g);
 		assertTrue("", liste2.getKleinstesElement().equals(g));
 	}
-	
+
+	/**
+	 * Prüft das finden des kleinsten Elementes im String Array.
+	 */
 	@Test
 	public void testKleinstesElementString() {
 		Liste<String> liste2 = new ArrayListe<String>();
@@ -105,6 +108,9 @@ public class ArrayListeTest {
 		assertTrue("", liste2.getKleinstesElement().equals("f"));
 	}
 
+	/**
+	 * Prüft das berechnen der Summe der Integer String Array.
+	 */
 	@Test
 	public void berechneSummeIntegerTestString() {
 		Liste<String> localliste = new ArrayListe<String>();
@@ -113,6 +119,9 @@ public class ArrayListeTest {
 				(localliste.berechneSummeInteger() == 0));
 	}
 
+	/**
+	 * Prüft das berechnen der Summe der Integer Integer Array.
+	 */
 	@Test
 	public void berechneSummeIntegerTestInteger() {
 		Liste<Integer> localliste = new ArrayListe<Integer>();
