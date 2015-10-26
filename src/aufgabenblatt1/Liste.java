@@ -14,4 +14,5 @@ public interface Liste<Typ extends Comparable<Typ>> {
 	String toString();
 	Typ getKleinstesElement();
 	int berechneSummeInteger();
+	
 }
