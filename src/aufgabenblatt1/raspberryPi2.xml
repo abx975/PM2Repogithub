@@ -1,4 +1,5 @@
 <?xml version = "1.0" encoding="UTF-8"?>
+<!DOCTYPE rechner SYSTEM "RaspberryPi2.dtd">
 <rechner name="raspberry Pi - Model b" ip="192.168.2.1">
 	<sensoren wert="22.4">
 		<ort>Wohnzimmer</ort>

@@ -27,21 +27,17 @@ public class ArrayListeTest {
 	/**
 	 * Prüft das Hinzufügen.
 	 */
-
 	@Test
 	public void testhinzufuegen() {
 		Liste<Integer> localliste = new ArrayListe<Integer>();
-		assertTrue("AnzahlElemente muss anfangs 0 sein",
-				localliste.getAnzahlElemente() == 0);
+		assertTrue("AnzahlElemente muss anfangs 0 sein", localliste.getAnzahlElemente() == 0);
 		localliste.hinzufuegen(a);
 		assertTrue("Hinzufügen hat nicht geklappt", localliste.get(0).equals(a));
-		assertTrue("AnzahlElemente muss 1 sein",
-				localliste.getAnzahlElemente() == 1);
+		assertTrue("AnzahlElemente muss 1 sein", localliste.getAnzahlElemente() == 1);
 		localliste.hinzufuegen(b);
 		assertTrue("Hinzufügen hat nicht geklappt", localliste.get(0).equals(a));
 		assertTrue("Hinzufügen hat nicht geklappt", localliste.get(1).equals(b));
-		assertTrue("AnzahlElemente muss 2 sein",
-				localliste.getAnzahlElemente() == 2);
+		assertTrue("AnzahlElemente muss 2 sein", localliste.getAnzahlElemente() == 2);
 	}
 
 	private void bereitevor() {
@@ -55,27 +51,21 @@ public class ArrayListeTest {
 	/**
 	 * Prüft das Entfernen.
 	 */
-
 	@Test
 	public void testentfernen() {
 		bereitevor();
-		assertTrue("fünf Elemente sollten anfangs enthalten sein",
-				liste.getAnzahlElemente() == 5);
-		assertTrue("zweimal 1 sollte enthalten sein",
-				liste.get(0).equals(liste.get(2)));
+		assertTrue("fünf Elemente sollten anfangs enthalten sein", liste.getAnzahlElemente() == 5);
+		assertTrue("zweimal 1 sollte enthalten sein", liste.get(0).equals(liste.get(2)));
 		liste.entferneElementAnIndex(3);
 		assertTrue("die 3 ist nicht hierher aufgerückt", liste.get(3).equals(b));
-		assertTrue("vier Elemente sollten enthalten sein",
-				liste.getAnzahlElemente() == 4);
+		assertTrue("vier Elemente sollten enthalten sein", liste.getAnzahlElemente() == 4);
 		liste.entfernen(a);
-		assertTrue("2 Elemente sollten enthalten sein",
-				liste.getAnzahlElemente() == 2);
+		assertTrue("2 Elemente sollten enthalten sein", liste.getAnzahlElemente() == 2);
 	}
 
 	/**
 	 * Prüft das finden des kleinsten Elementes im Array.
 	 */
-
 	@Test
 	public void testKleinstesElement() {
 		bereitevor();
@@ -85,7 +75,6 @@ public class ArrayListeTest {
 	/**
 	 * Prüft das finden des kleinsten Elementes im Integer Array.
 	 */
-
 	@Test
 	public void testKleinstesElement2() {
 		Liste<Integer> liste2 = new ArrayListe<Integer>();
@@ -115,8 +104,7 @@ public class ArrayListeTest {
 	public void berechneSummeIntegerTestString() {
 		Liste<String> localliste = new ArrayListe<String>();
 		localliste.hinzufuegen("a");
-		assertTrue("Da der Typ String ist muss ",
-				(localliste.berechneSummeInteger() == 0));
+		assertTrue("Da der Typ String ist muss ", (localliste.berechneSummeInteger() == 0));
 	}
 
 	/**
@@ -127,17 +115,13 @@ public class ArrayListeTest {
 		Liste<Integer> localliste = new ArrayListe<Integer>();
 
 		localliste.hinzufuegen(a);
-		assertTrue("Summe der Integer muss 1 sein",
-				(localliste.berechneSummeInteger() == 1));
+		assertTrue("Summe der Integer muss 1 sein", (localliste.berechneSummeInteger() == 1));
 		localliste.hinzufuegen(b);
-		assertTrue("Summe der Integer muss 3 sein",
-				(localliste.berechneSummeInteger() == 3));
+		assertTrue("Summe der Integer muss 3 sein", (localliste.berechneSummeInteger() == 3));
 		localliste.hinzufuegen(c);
-		assertTrue("Summe der Integer muss 6 sein",
-				(localliste.berechneSummeInteger() == 6));
+		assertTrue("Summe der Integer muss 6 sein", (localliste.berechneSummeInteger() == 6));
 		localliste.hinzufuegen(d);
-		assertTrue("Summe der Integer muss 10 sein",
-				(localliste.berechneSummeInteger() == 10));
+		assertTrue("Summe der Integer muss 10 sein", (localliste.berechneSummeInteger() == 10));
 	}
 
 }

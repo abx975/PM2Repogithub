@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT rechner(sensoren)*>
-<!ATTLIST rechner name CDATA #REQUIERD ip CDATA #REQUIERD
+<!ELEMENT rechner (sensoren*)>
+<!ATTLIST rechner name CDATA #REQUIRED ip CDATA #REQUIRED>
 <!ELEMENT sensoren (ort+, typ?)>
 <!ATTLIST sensoren wert CDATA #REQUIRED>
-<!ELEMENT ort(#PCDATA)>
-<!ELEMENT typ(#PCDATA)>
+<!ELEMENT ort (#PCDATA)>
+<!ELEMENT typ (#PCDATA)>
