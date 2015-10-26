@@ -24,6 +24,9 @@ public class StudentTest {
 	Student Hans1 = new Student("Hans1", "Fox", 678, leistungen2);
 	Student Hans2 = new Student("Hans2", "Pan", 129, leistungen2);
 	
+	/**
+	 * vergleicht Matrikelnummer von Studenten.
+	 */
 	@Test
 	public void testCompareTo() {
 		assertTrue(Peter1.compareTo(Peter2) < 0);

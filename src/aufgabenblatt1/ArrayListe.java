@@ -1,23 +1,49 @@
 package aufgabenblatt1;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
 
+/**
+ * Diese Klasse repraesentiert die ArrayListe<T>.
+ * 
+ * @author Nils Eggebrecht, Eduard Veit
+ * @version 1.0
+ */
 public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 
+	/**
+	 * Speichert die Anzahl der Elemente.
+	 */
 	int anzahlElemente;
+	/**
+	 * Speichert die Elemente vom Typ Typ.
+	 */
 	private Object[] elemente;
-	
+
+	/**
+	 * Generiert eine Liste elemente.
+	 * 
+	 * @param anfangsKapazitaet
+	 *            Angabe der Größe des Arrays
+	 */
 	public ArrayListe(int anfangsKapazitaet) {
 		anzahlElemente = 0;
 		elemente = new Object[anfangsKapazitaet];
 	}
 
+	/**
+	 * Generiert eine Liste elemente mit der Größe 10.
+	 * 
+	 */
 	public ArrayListe() {
 		this(10); // AnfangsKapazität ist auf 10 gesetzt.
 	}
-	
+
+	/**
+	 * Fuegt der Liste ein Element hinzu.
+	 * 
+	 * @param element
+	 *            Angabe der Größe des Arrays
+	 */
 	@Override
 	public void hinzufuegen(Typ element) {
 		sichereKapazitaetZu(anzahlElemente + 1);
@@ -25,6 +51,13 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 		anzahlElemente++;
 	}
 
+	/**
+	 * vergroessert das Array
+	 * 
+	 * @param mindestKapazitaet
+	 *            gibt die Größe des neuen Arrays an.
+	 * 
+	 * */
 	private void sichereKapazitaetZu(int mindestKapazitaet) {
 		int alteKapazitaet = elemente.length;
 		if (mindestKapazitaet > alteKapazitaet) {
@@ -34,14 +67,48 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 		}
 	}
 
+	/**
+	 * Berechnet die Summe der Zahlen, wenn die Liste eine Integer-Liste ist.
+	 * 
+	 * @return Summe der Zahlen aus dem Array, wenn nicht Integer dann 0.
+	 */
+
+	@Override
+	public int berechneSummeInteger() {
+		int summe = 0;
+		if (!(elemente[0] instanceof Integer)) {
+			System.out.println("Ist kein Integer");
+			return 0;
+		}
+
+		for (int i = 0; i < anzahlElemente; i++) {
+			summe += (int) get(i);
+		}
+		return summe;
+	}
+
+	/**
+	 * Berechnet die Summe der Zahlen, wenn die Liste eine Integer-Liste ist.
+	 * 
+	 * @param index
+	 *            liefert den Index, von dem der Typ angegeben werden soll.
+	 * @return Summe der Zahlen aus dem Array, wenn nicht Integer dann 0.
+	 */
 	@Override
 	public Typ get(int index) {
-        if (index >= getAnzahlElemente()) {
-            throw new IndexOutOfBoundsException();
-        }
+		if (index >= getAnzahlElemente()) {
+			throw new IndexOutOfBoundsException();
+		}
 		return (Typ) elemente[index];
 	}
 
+	/**
+	 * Entfernt alle Elemente die gleich dem eingabe Parameter sind.
+	 * 
+	 * @param element
+	 *            welches entfernt werden soll.
+	 * 
+	 */
 	@Override
 	public void entfernen(Typ element) {
 		for (int i = 0; i < getAnzahlElemente(); i++) {
@@ -49,27 +116,44 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 				entferneElementAnIndex(i);
 			}
 		}
-		
+
 	}
 
+	/**
+	 * Entfernt das Element an der Stelle vom Index.
+	 * 
+	 * @param index
+	 *            gibt an welches Element entfernt werden soll.
+	 * 
+	 */
 	@Override
 	public void entferneElementAnIndex(int index) {
-        if (index >= getAnzahlElemente()) {
-            throw new IndexOutOfBoundsException();
-        }
-        for (int i = index, k = i +1; k < elemente.length; i++,k++)
-        {
-            elemente[i] = elemente[k];
-        }
-        elemente[anzahlElemente-1] = null; 
-        anzahlElemente--;
+		if (index >= getAnzahlElemente()) {
+			throw new IndexOutOfBoundsException();
+		}
+		for (int i = index, k = i + 1; k < elemente.length; i++, k++) {
+			elemente[i] = elemente[k];
+		}
+		elemente[anzahlElemente - 1] = null;
+		anzahlElemente--;
 	}
 
+	/**
+	 * Entfernt das Element an der Stelle vom Index.
+	 * 
+	 * @return anzahlElemente gbt die Anzahl der Elemente im Array aus.
+	 * 
+	 */
 	@Override
 	public int getAnzahlElemente() {
 		return anzahlElemente;
 	}
-
+	/**
+	 * Sucht das kleinste Element im Array.
+	 * 
+	 * @return liefert das Kleinste Element vom Typ Typ zurück.
+	 * 
+	 */
 	@Override
 	public Typ getKleinstesElement() {
 		Typ kleinstesElement = null;
@@ -82,20 +166,20 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 		if (getAnzahlElemente() > 1) {
 			kleinstesElement = (Typ) get(0);
 			for (int i = 0; i < (anzahlElemente - 1); i++) {
-				Typ e2 = (Typ) get(i+1);
+				Typ e2 = (Typ) get(i + 1);
 				if (kleinstesElement.compareTo(e2) > 0) {
 					kleinstesElement = e2;
-				} 
+				}
 			}
 		}
 		return kleinstesElement;
-		
-//        LinkedList<Typ> list = new LinkedList<Typ>();
-//        for (Object obj: elemente){
-//            list.add((Typ)(obj));
-//        }
-//        Collections.sort(list);
-//        return list.get(0);
+
+		// LinkedList<Typ> list = new LinkedList<Typ>();
+		// for (Object obj: elemente){
+		// list.add((Typ)(obj));
+		// }
+		// Collections.sort(list);
+		// return list.get(0);
 	}
 
 }

@@ -24,24 +24,23 @@ public class NamensVergleicherTest {
 	Student Peter3 = new Student("Peter", "Pan", 125, leistungen);
 	Student Hans1 = new Student("Hans1", "Fox", 678, leistungen2);
 	Student Hans2 = new Student("Hans2", "Pan", 129, leistungen2);
-	
-	
-	
-	public NamensVergleicherTest() {
-		super();
-
-	}
 
 
+	/**
+	 * vergleicht die Studenten nach dem Namen, mit Studenten die den gleichen Namen haben.
+	 */
 
 	@Test
-	public void testepetervspeter() {
+	public void testNameGleicherName() {
 		NamensVergleicher vergl = new NamensVergleicher();
 		assertTrue("auswerten liefert falschen Wert", (vergl.compare(Peter1, Peter2) == 0));
 	}
-	
+	/**
+	 * vergleicht die Studenten nach dem Namen, mit Studenten die einen unterschiedlichen Namen haben.
+	 */
+
 	@Test
-	public void testNameunterschiedlichenNachnamen() {
+	public void testNameUnterschiedlichenNachnamen() {
 		NamensVergleicher vergl = new NamensVergleicher();
 		assertTrue("auswerten liefert falschen Wert", (vergl.compare(Peter1, Peter3) < 0));
 		assertTrue("auswerten liefert falschen Wert", (vergl.compare(Peter3, Peter1) > 0));
