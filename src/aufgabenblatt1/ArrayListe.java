@@ -51,6 +51,7 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 		anzahlElemente++;
 	}
 
+
 	/**
 	 * vergroessert das Array
 	 * 
@@ -62,7 +63,7 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 		int alteKapazitaet = elemente.length;
 		if (mindestKapazitaet > alteKapazitaet) {
 			Object[] alteElemente = elemente;
-			int neueKapazitaet = alteKapazitaet + 5;
+			int neueKapazitaet = alteKapazitaet + Math.max(5, mindestKapazitaet-alteKapazitaet);
 			elemente = Arrays.copyOf(alteElemente, neueKapazitaet);
 		}
 	}
@@ -76,13 +77,11 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 	@Override
 	public int berechneSummeInteger() {
 		int summe = 0;
-		if (!(elemente[0] instanceof Integer)) {
-			System.out.println("Ist kein Integer");
-			return 0;
-		}
 
 		for (int i = 0; i < anzahlElemente; i++) {
-			summe += (int) get(i);
+			if (elemente[i] instanceof Integer) {
+				summe += (int) get(i);
+			}
 		}
 		return summe;
 	}
@@ -131,8 +130,12 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 		if (index >= getAnzahlElemente()) {
 			throw new IndexOutOfBoundsException();
 		}
-		for (int i = index, k = i + 1; k < elemente.length; i++, k++) {
-			elemente[i] = elemente[k];
+//		for (int i = index, k = i + 1; k < elemente.length; i++, k++) {
+//			elemente[i] = elemente[k];
+//		}
+		
+		for (int i = index; i < elemente.length-1; i++) {
+			elemente[i] = elemente[i+1];
 		}
 		elemente[anzahlElemente - 1] = null;
 		anzahlElemente--;
@@ -158,9 +161,7 @@ public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 	@Override
 	public Typ getKleinstesElement() {
 		Typ kleinstesElement = null;
-		if (getAnzahlElemente() < 1) {
-			kleinstesElement = null;
-		}
+
 		if (getAnzahlElemente() == 1) {
 			kleinstesElement = get(0);
 		}

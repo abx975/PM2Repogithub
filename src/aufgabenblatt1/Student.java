@@ -31,7 +31,6 @@ public class Student implements Comparable<Student> {
 	 */
 	public Student(String vorname, String name, int matrikelnummer,
 			List<Pruefungsleistung> pruefungsleistungen) {
-		super();
 		this.setVorname(vorname);
 		this.setName(name);
 		this.setMatrikelnummer(matrikelnummer);

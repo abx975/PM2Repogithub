@@ -123,5 +123,5 @@ public class ArrayListeTest {
 		localliste.hinzufuegen(d);
 		assertTrue("Summe der Integer muss 10 sein", (localliste.berechneSummeInteger() == 10));
 	}
-
+	
 }
