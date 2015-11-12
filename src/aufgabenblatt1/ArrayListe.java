@@ -7,7 +7,7 @@ import java.util.Arrays;
  * Diese Klasse repraesentiert die ArrayListe<T>.
  * 
  * @author Nils Eggebrecht, Eduard Veit
- * @version 1.0
+ * @version 1.1
  */
 public class ArrayListe<Typ extends Comparable<Typ>> implements Liste<Typ> {
 
