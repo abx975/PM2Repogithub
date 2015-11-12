@@ -1,6 +1,3 @@
-/**
- * 
- */
 package aufgabenblatt2;
 
 import static org.junit.Assert.*;
@@ -10,53 +7,121 @@ import aufgabenblatt2.Operation;
 import aufgabenblatt2.Rechner;
 
 /**
- * @author Negge Thinkpad
+ * Diese Klasse testet die Klasse Rechner.
  * 
+ * @author Nils Eggebrecht, Eduard Veit
+ * @version 1.0
  */
 public class RechnerTest {
 	Rechner rechner = new Rechner();
-	double epsilion = 0.000000000001;
+	double epsilion = 0.000001;
+	double epsilion1 = 0.000001;
+
 	Rechner rechnerrechner = new Rechner();
 
 	DoubleDoubleZuDouble ddzdadd = (x, y) -> x + y;
-	DoubleDoubleZuDouble ddzdsub = (x, y) -> x + y;
-	DoubleDoubleZuDouble ddzdmul = (x, y) -> x + y;
-	DoubleDoubleZuDouble ddzddiv = (x, y) -> x + y;
+	DoubleDoubleZuDouble ddzdsub = (x, y) -> x - y;
+	DoubleDoubleZuDouble ddzdmul = (x, y) -> x * y;
+	DoubleDoubleZuDouble ddzddiv = (x, y) -> x / y;
 
 	@Test
 	public void testAddiereddzd() {
 		assertTrue("3.3 + 3.2 muss 6.5 ergeben.", (Math.abs(ddzdadd.werteAus(3.3, 3.2) - 6.5) < epsilion));
+		assertTrue("3.3 + (-3.2) muss 0.1 ergeben.", (Math.abs(ddzdadd.werteAus(3.3, -3.2) - 0.1) < epsilion));
+		assertTrue("(-3.3) + (-3.2) muss 6.5 ergeben.", (Math.abs(ddzdadd.werteAus(-3.3, -3.2) + 6.5) < epsilion));
 	}
 
 	@Test
-	public void testAddiere() {
-		assertTrue("3.3 + 3.2 muss 6.5 ergeben.",
-				(Math.abs(rechnerrechner.berechne(Operation.ADDIERE, 3.3, 3.2) - 6.5) < epsilion));
+	public void testSubrahiereDdzdsub() {
+		assertTrue("3.3 - 3.2 muss 0.1 ergeben.", (Math.abs(ddzdsub.werteAus(3.3, 3.2) - 0.1) < epsilion));
+		assertTrue("3.3 - 0 muss 3.3 ergeben.", (Math.abs(ddzdsub.werteAus(3.3, 0.0) - 3.3) < epsilion));
+		assertTrue("0.0 - 0.0 muss 0.0 ergeben.", (Math.abs(ddzdsub.werteAus(0.0, 0.0)) < epsilion));
+		assertTrue("-5.0 - 3.0 muss -8 ergeben.", (Math.abs(ddzdsub.werteAus(-5.0, 3.0) + 8) < epsilion));
 	}
 
 	@Test
-	public void testSubrahiere() {
-		assertTrue("3.3 - 3.2 muss 0.1 ergeben.", (Math.abs(ddzdsub.werteAus(3.3, 3.2) - 6.5) < epsilion));
+	public void testMultipliziereDdzdmul() {
+		assertTrue("3.3 * 3.2 muss 10.56 ergeben.", (Math.abs(ddzdmul.werteAus(3.0, 3.0) - 9) < epsilion));
+		assertTrue("3.3 * 0.0 muss 0.0 ergeben.", (Math.abs(ddzdmul.werteAus(3.3, 0.0)) < epsilion));
+		assertTrue("0.0 * 3.3 muss 0.0 ergeben.", (Math.abs(ddzdmul.werteAus(0.0, 3.3)) < epsilion));
+		assertTrue("2.0 * -5.0 muss 0.0 ergeben.", (Math.abs(ddzdmul.werteAus(2.0, -5.0) + 10) < epsilion));
 	}
 
 	@Test
-	public void testMultipliziere() {
-		assertTrue("3.3 * 3.2 muss 10.56 ergeben.", (Math.abs(ddzdmul.werteAus(3.3, 3.2) - 6.5) < epsilion));
-	}
-
-	@Test
-	public void testDividiere() {
-		assertTrue("3.3 / 3.2 muss 1.03125 ergeben.", (Math.abs(ddzddiv.werteAus(3.3, 3.2) - 6.5) < epsilion));
-	}
-
-	@Test
-	public void testDividiereDurch0() {
-		assertTrue("0 / 3.2 muss 1.03125 ergeben.", (Math.abs(ddzddiv.werteAus(0, 3.2)) < epsilion));
+	public void testDividiereDdzddiv() {
+		assertTrue("3.3 / 3.2 muss 1.03125 ergeben.", (Math.abs(ddzddiv.werteAus(3.3, 3.2) - 1.03125) < epsilion));
 	}
 
 	@Test
 	public void testNullstele() {
 
-		assertTrue("2.0 * 3.0 + 1.0 muss 7.0 ergeben.", (Math.abs(ddzdadd.werteAus(1,(ddzdmul.werteAus(2, 3))) - 7) < epsilion));
+		assertTrue("2.0 * 3.0 + 1.0 muss 7.0 ergeben.",
+				(Math.abs(ddzdadd.werteAus(1, (ddzdmul.werteAus(2.0, 3.0))) - 7.0) < epsilion));
+
+		assertTrue("3.0 * 3.0 + 4.0 muss 13.0 ergeben.",
+				(Math.abs(ddzdadd.werteAus(4.0, (ddzdmul.werteAus(3.0, 3.0))) - 13.0) < epsilion));
+
+		assertTrue("0.0 * 3.0 + 4.0 muss 4.0 ergeben.",
+				(Math.abs(ddzdadd.werteAus(4.0, (ddzdmul.werteAus(0.0, 3.0))) - 4.0) < epsilion));
+
+	}
+
+	// FUBKTIONIERT NICHT!
+	// @Test
+	// public void testDividiereDurch0ddzddiv() {
+	// assertTrue("0 / 3.2 muss 1.03125 ergeben.",
+	// (Math.abs(ddzddiv.werteAus(3.2, 0.0)) < epsilion));
+	// }
+
+	@Test
+	public void testAddiere() {
+		assertTrue("3.3 + 3.2 muss 6.5 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.ADDIERE, 3.3, 3.2) - 6.5) < epsilion));
+		assertTrue("-3.3 + -3.2 muss 6.5 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.ADDIERE, -3.3, -3.2) + 6.5) < epsilion));
+		assertTrue("3.3 + (-3.2) muss 6.5 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.ADDIERE, 3.3, -3.2) - 0.1) < epsilion));
+	}
+
+	@Test
+	public void testSubtrahiere() {
+		assertTrue("3.0 - 3.0  muss 1.0 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.SUBTRAHIERE, 3.0, 3.0)) < epsilion));
+		assertTrue("1.0 - 2.0  muss -1.0 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.SUBTRAHIERE, 1.0, 2.0) + 1.0) < epsilion));
+		assertTrue("-5.0 - -2.0  muss -3.0 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.SUBTRAHIERE, -5.0, -2.0) + 3.0) < epsilion));
+		assertTrue("-5.0 - 2.0  muss 2.5 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.SUBTRAHIERE, -5.0, 2.0) + 7.0) < epsilion));
+	}
+
+	@Test
+	public void testMultipliziere() {
+		assertTrue("3.3 * 3.2 muss 6.5 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.MULTIPLIZIERE, 3.3, 3.2) - 10.56) < epsilion));
+		assertTrue("-2.0 * 3.0 muss 6.5 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.MULTIPLIZIERE, -2, 3.0) + 6.0) < epsilion));
+		assertTrue("3.3 * 0 muss 0.0 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.MULTIPLIZIERE, 3.3, 0.0)) < epsilion));
+	}
+
+	@Test
+	public void testDividiere() {
+		assertTrue("3.0 / 3.0  muss 1.0 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.DIVIDIERE, 3.0, 3.0) - 1.0) < epsilion));
+		assertTrue("3.0 / 2.0  muss 1.5 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.DIVIDIERE, 3.0, 2.0) - 1.5) < epsilion));
+		assertTrue("1.0 / 2.0  muss 0.5 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.DIVIDIERE, 1.0, 2.0) - 0.5) < epsilion));
+		assertTrue("-5.0 / 2.0  muss 2.5 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.DIVIDIERE, -5.0, 2.0) + 2.5) < epsilion));
+		assertTrue("5.0 / -2.0  muss 2.5 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.DIVIDIERE, 5.0, -2.0) + 2.5) < epsilion));
+	}
+
+	@Test
+	public void testDividiereDurch0() {
+		assertTrue("Das ergebnis muss 0 ergeben und eine Fehlermeldung ausgeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.DIVIDIERE, 3.0, 0.0)) < epsilion));
 	}
 }
