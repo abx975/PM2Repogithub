@@ -11,11 +11,11 @@ import aufgabenblatt2.Rechner;
 
 /**
  * @author Negge Thinkpad
- *
+ * 
  */
 public class RechnerTest {
 	Rechner rechner = new Rechner();
-	double epsilion = 0.0000001;
+	double epsilion = 0.000000000001;
 	Rechner rechnerrechner = new Rechner();
 
 	DoubleDoubleZuDouble ddzdadd = (x, y) -> x + y;
