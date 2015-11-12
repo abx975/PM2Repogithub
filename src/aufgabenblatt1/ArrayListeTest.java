@@ -12,7 +12,7 @@ import org.junit.Test;
  */
 public class ArrayListeTest {
 
-	Integer a, b, c, d;
+	Integer a, b, c, d, e;
 	Liste<Integer> liste;
 
 	public ArrayListeTest() {
