@@ -2,6 +2,7 @@ package aufgabenblatt1;
 
 import java.util.Arrays;
 
+
 /**
  * Diese Klasse repraesentiert die ArrayListe<T>.
  * 
