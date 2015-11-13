@@ -53,7 +53,7 @@ public class RechnerTest {
 	}
 
 	@Test
-	public void testNullstele() {
+	public void testNullsteleddzd() {
 
 		assertTrue("2.0 * 3.0 + 1.0 muss 7.0 ergeben.",
 				(Math.abs(ddzdadd.werteAus(1, (ddzdmul.werteAus(2.0, 3.0))) - 7.0) < epsilion));
@@ -123,5 +123,13 @@ public class RechnerTest {
 	public void testDividiereDurch0() {
 		assertTrue("Das ergebnis muss 0 ergeben und eine Fehlermeldung ausgeben.",
 				(Math.abs(rechnerrechner.berechne(Operation.DIVIDIERE, 3.0, 0.0)) < epsilion));
+	}
+
+	@Test
+	public void testNullstele() {
+
+		assertTrue("2.0 * 3.0 + 1.0 muss 7.0 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.ADDIERE, 1 ,(rechnerrechner.berechne(Operation.MULTIPLIZIERE, 2.0, 3.0))) -7) < epsilion));
+
 	}
 }
