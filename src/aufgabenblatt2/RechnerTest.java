@@ -2,6 +2,7 @@ package aufgabenblatt2;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Test;
 import aufgabenblatt2.Operation;
 import aufgabenblatt2.Rechner;
@@ -22,7 +23,13 @@ public class RechnerTest {
 	DoubleDoubleZuDouble ddzdadd = (x, y) -> x + y;
 	DoubleDoubleZuDouble ddzdsub = (x, y) -> x - y;
 	DoubleDoubleZuDouble ddzdmul = (x, y) -> x * y;
-	DoubleDoubleZuDouble ddzddiv = (x, y) -> x / y;
+	DoubleDoubleZuDouble ddzddiv = (x, y) -> {
+		if ((Math.abs(0.0 + y) < epsilion) && (Math.abs(0.0 - y) < epsilion1)) {
+			throw new ArithmeticException();
+		} else {
+			return x / y;
+		}
+	};
 
 	@Test
 	public void testAddiereddzd() {
@@ -66,12 +73,10 @@ public class RechnerTest {
 
 	}
 
-	// FUBKTIONIERT NICHT!
-	// @Test
-	// public void testDividiereDurch0ddzddiv() {
-	// assertTrue("0 / 3.2 muss 1.03125 ergeben.",
-	// (Math.abs(ddzddiv.werteAus(3.2, 0.0)) < epsilion));
-	// }
+	@Test(expected = ArithmeticException.class)
+	public void testDividiereDurch0Ddzddiv() {
+		Assert.assertEquals("3.2 / 0.0 muss 1.03125 ergeben.", ddzddiv.werteAus(3.2, 0.0));
+	}
 
 	@Test
 	public void testAddiere() {
@@ -100,9 +105,9 @@ public class RechnerTest {
 		assertTrue("3.3 * 3.2 muss 6.5 ergeben.",
 				(Math.abs(rechnerrechner.berechne(Operation.MULTIPLIZIERE, 3.3, 3.2) - 10.56) < epsilion));
 		assertTrue("-2.0 * 3.0 muss 6.5 ergeben.",
-				(Math.abs(rechnerrechner.berechne(Operation.MULTIPLIZIERE, -2, 3.0) + 6.0) < epsilion));
-		assertTrue("3.3 * 0 muss 0.0 ergeben.",
-				(Math.abs(rechnerrechner.berechne(Operation.MULTIPLIZIERE, 3.3, 0.0)) < epsilion));
+				(Math.abs(rechnerrechner.berechne(Operation.MULTIPLIZIERE, -2.0, 3.0) + 6.0) < epsilion));
+		assertTrue("0.0 * 3.3 muss 0.0 ergeben.",
+				(Math.abs(rechnerrechner.berechne(Operation.MULTIPLIZIERE, 0.0, 3.3)) < epsilion));
 	}
 
 	@Test
@@ -119,17 +124,17 @@ public class RechnerTest {
 				(Math.abs(rechnerrechner.berechne(Operation.DIVIDIERE, 5.0, -2.0) + 2.5) < epsilion));
 	}
 
-	@Test
+	@Test(expected = ArithmeticException.class)
 	public void testDividiereDurch0() {
-		assertTrue("Das ergebnis muss 0 ergeben und eine Fehlermeldung ausgeben.",
-				(Math.abs(rechnerrechner.berechne(Operation.DIVIDIERE, 3.0, 0.0)) < epsilion));
+		Assert.assertEquals("3.0 / 0.0 muss rithmeticException werfen.",
+				rechnerrechner.berechne(Operation.DIVIDIERE, 3.0, 0.0));
 	}
 
 	@Test
 	public void testNullstele() {
 
-		assertTrue("2.0 * 3.0 + 1.0 muss 7.0 ergeben.",
-				(Math.abs(rechnerrechner.berechne(Operation.ADDIERE, 1 ,(rechnerrechner.berechne(Operation.MULTIPLIZIERE, 2.0, 3.0))) -7) < epsilion));
+		assertTrue("2.0 * 3.0 + 1.0 muss 7.0 ergeben.", (Math.abs(rechnerrechner.berechne(Operation.ADDIERE, 1,
+				(rechnerrechner.berechne(Operation.MULTIPLIZIERE, 2.0, 3.0))) - 7) < epsilion));
 
 	}
 }

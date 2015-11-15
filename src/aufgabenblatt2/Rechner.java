@@ -35,16 +35,14 @@ public class Rechner {
 	 * @param zahl2
 	 * @return Ergebnis der Rechenoperation.
 	 */
-	public double berechne(Operation oper, double zahl1, double zahl2) {
+	public double berechne(Operation oper, double zahl1, double zahl2) throws IllegalArgumentException {
 		double epsilion = 0.0001;
 		double epsilion1 = 0.0001;
 
 		if ((Math.abs(0.0 + zahl2) < epsilion) && (Math.abs(0.0 - zahl2) < epsilion1)) {
-			System.out.println("Dividieren durch 0 ist nicht erlaubt");
-			return 0;
+			throw new ArithmeticException();
 		} else {
 			return operMap.get(oper).apply(zahl1, zahl2);
-		}
-
+		}		
 	}
 }
