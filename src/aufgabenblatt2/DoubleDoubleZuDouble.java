@@ -1,4 +1,5 @@
 package aufgabenblatt2;
+
 @FunctionalInterface
 public interface DoubleDoubleZuDouble {
 

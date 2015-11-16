@@ -1,7 +1,4 @@
-/**
- * 
- */
-package src.aufgabenblatt2;
+package aufgabenblatt2;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +7,7 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * @author Eddy
+ * @author Eduard Veit, Nils Eggebrecht
  *
  */
 public class EingabenVerarbeiterTest {
@@ -40,6 +37,8 @@ public class EingabenVerarbeiterTest {
 		assertTrue(eingabeList.get(2).equals("STRASSEN"));
 		assertTrue("Umlauteersetzung", eingabeList.get(1).equals("AEUSSERE"));
 	}
+	
+	
 
 
 

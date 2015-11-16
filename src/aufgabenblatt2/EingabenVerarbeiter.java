@@ -1,7 +1,7 @@
 /**
  * 
  */
-package src.aufgabenblatt2;
+package aufgabenblatt2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +40,7 @@ public class EingabenVerarbeiter {
 				.map(string -> string.replace("Ö", "OE"))
 				.map(string -> string.replace("Ü", "UE"))
 				.map(string -> string.replace("ß", "SS"))
-				// Kürzen des Strings auff maximal 8 Zeichen
+				// Kuerzen des Strings auff maximal 8 Zeichen
 				.map(string -> {
 					if (string.length() > 8) {
 						string = string.substring(0, 8);

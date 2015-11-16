@@ -1,5 +1,4 @@
 package aufgabenblatt1;
-
 import java.util.Arrays;
 
 

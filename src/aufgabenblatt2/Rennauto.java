@@ -1,9 +1,9 @@
-package src.aufgabenblatt2;
+package aufgabenblatt2;
 
 import java.io.PrintStream;
 
 /**
- * @author Eduard veit, Nils Eggebrecht
+ * @author Eduard Veit, Nils Eggebrecht
  *
  */
 public class Rennauto extends Thread implements Comparable<Rennauto> {
@@ -37,13 +37,13 @@ public class Rennauto extends Thread implements Comparable<Rennauto> {
 	@Override
 	public void run() {
 		long start = System.currentTimeMillis();
-		for (double i = 0; i < streckeMeter; i = i + vMeterProSekunde) {
-			try {
+		try {
+			for (double i = 1; i < streckeMeter + 1; i = i + vMeterProSekunde) {
 				Thread.sleep(800 + (int) (Math.random() * 400));
-				System.out.printf("Wagen " + wagennummer + ": %.1f / %.1f \n", i, streckeMeter);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+				System.err.printf("Wagen " + wagennummer + ": %.1f / %.1f \n", i, streckeMeter);
 			}
+		} catch (InterruptedException e) {
+			interrupt();
 		}
 		renndauerSekunden = (((double) (System.currentTimeMillis() - start)) / 1000);
 	}
@@ -70,10 +70,12 @@ public class Rennauto extends Thread implements Comparable<Rennauto> {
 			return 0;
 		}
 	}
-/**
- * Gibt ein Rennauto auf der Konsole aus.
- * @return String
- */
+
+	/**
+	 * Gibt ein Rennauto auf der Konsole aus.
+	 * 
+	 * @return String
+	 */
 	public PrintStream toPrintStream() {
 
 		return System.out.printf("Wagen " + wagennummer + ": %.1f Sekunden \n", renndauerSekunden);

@@ -14,6 +14,7 @@ import aufgabenblatt2.Operation;
 public class Rechner {
 
 	private HashMap<Operation, BinaryOperator<Double>> operMap;
+	double epsilion = 0.0000000001;
 
 	/**
 	 * Der Konstructor beinhaltet die 4 Rechenoperationen
@@ -23,7 +24,14 @@ public class Rechner {
 		operMap.put(Operation.ADDIERE, (x, y) -> x + y);
 		operMap.put(Operation.SUBTRAHIERE, (x, y) -> x - y);
 		operMap.put(Operation.MULTIPLIZIERE, (x, y) -> x * y);
-		operMap.put(Operation.DIVIDIERE, (x, y) -> x / y);
+		operMap.put(Operation.DIVIDIERE, (x, y) -> {
+			if ((Math.abs(0.0 + y) < epsilion) && (Math.abs(0.0 - y) < epsilion)) {
+				throw new ArithmeticException();
+			} else {
+				return x / y;
+			}
+		});
+
 	}
 
 	/**
@@ -35,14 +43,7 @@ public class Rechner {
 	 * @param zahl2
 	 * @return Ergebnis der Rechenoperation.
 	 */
-	public double berechne(Operation oper, double zahl1, double zahl2) throws IllegalArgumentException {
-		double epsilion = 0.0001;
-		double epsilion1 = 0.0001;
-
-		if ((Math.abs(0.0 + zahl2) < epsilion) && (Math.abs(0.0 - zahl2) < epsilion1)) {
-			throw new ArithmeticException();
-		} else {
-			return operMap.get(oper).apply(zahl1, zahl2);
-		}		
+	public double berechne(Operation oper, double zahl1, double zahl2) {
+		return operMap.get(oper).apply(zahl1, zahl2);
 	}
 }
