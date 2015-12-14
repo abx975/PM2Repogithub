@@ -16,9 +16,10 @@ public class Simulation extends Observable implements Runnable {
 	}
 
 	/**
-	 * Simulation enthaelt einen Rangierbahnhof
+	 * Konstruktor: Für die Simulation wird ein Rangierbahnhof erzeugt.
 	 * 
 	 * @param gleise
+	 *            Anzahl der Gleise
 	 */
 	public Simulation(int gleise) {
 		bahnhof = new Rangierbahnhof(gleise);
@@ -30,7 +31,8 @@ public class Simulation extends Observable implements Runnable {
 	}
 
 	/**
-	 * erstellt alle 500ms einen Lockführer mit einer zufaelligen Aufgabe.
+	 * Die run()-Methode erstellt alle 500ms einen Lockführer mit einer
+	 * zufaelligen Aufgabe.
 	 */
 	@Override
 	public void run() {
@@ -39,7 +41,6 @@ public class Simulation extends Observable implements Runnable {
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
-
 			}
 
 			if (Math.random() < 0.5) {
