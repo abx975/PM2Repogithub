@@ -1,4 +1,3 @@
-
 package aufgabenblatt4;
 
 import javafx.application.Application;
