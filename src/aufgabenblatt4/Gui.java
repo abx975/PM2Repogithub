@@ -76,6 +76,11 @@ public class Gui extends Application {
 		BorderPane pane = new BorderPane();
 		area = new TextArea();
 		area.setMaxHeight(80);
+		area.setPromptText("Hier können Sie einen Befehl eingeben");
+		area.setTooltip(new Tooltip("Um Punkte in den Zeicheneditor zu erstellen, gibt es zwei Moeglichkeiten:\n"
+				+ "1. Moeglichkeit: Sie tippen mit der Maus in die Zeichenflaeche\n"
+				+ "2. Moeglichkeit: Sie geben im Textfenster Befehle ein.\n" + "Befehle haben folgende Struktur:\n"
+				+ "bewege -> XKoordinate , YKoordinate\n" + "Bsp.:   bewege -> 60.3, 200"));
 		pane.setCenter(area);
 		pane.setBottom(buttonPane());
 		return pane;
@@ -90,22 +95,6 @@ public class Gui extends Application {
 		HBox pane = new HBox();
 		pane.setSpacing(5);
 
-		Button hilfe = new Button("HILFE");
-		hilfe.setTooltip(new Tooltip(("Um Punkte in den Zeicheneditor zu erstellen, gibt es zwei Moeglichkeiten:\n"
-				+ "1. Moeglichkeit: Sie tippen mit der Maus in die Zeichenflaeche\n"
-				+ "2. Moeglichkeit: Sie geben im Textfenster Befehle ein.\n" + "Befehle haben folgende Struktur:\n"
-				+ "bewege -> XKoordinate , YKoordinate\n" + "Bsp.: bewege -> 60.3,200")));
-
-		// Button hilfe = new Button("HILFE");
-		// hilfe.setOnAction(
-		// event1 -> area.setText(("Um Punkte in den Zeicheneditor zu erstellen,
-		// gibt es zwei Moeglichkeiten:\n"
-		// + "1. Moeglichkeit: Sie tippen mit der Maus in die Zeichenflaeche\n"
-		// + "2. Moeglichkeit: Sie geben im Textfenster Befehle ein.\n"
-		// + "Befehle haben folgende Struktur:\n" + "bewege -> XKoordinate ,
-		// YKoordinate\n"
-		// + "Bsp.: bewege -> 60.3, 200")));
-
 		Button befehl = new Button("Befehl ausffuehren!");
 		befehl.setOnAction(event -> {
 			String text = area.getText();
@@ -116,6 +105,7 @@ public class Gui extends Application {
 			} catch (Exception e) {
 				area.setText(e.getMessage() + "\nSiehe \"HILFE\" fuer gueltige Befehle!");
 			}
+			
 		});
 
 		Button zeichnePolygon = new Button("Zeichne Polygon");
@@ -124,12 +114,19 @@ public class Gui extends Application {
 			polygonTabelle.refreshTabelle();
 			area.clear();
 		});
+		
+		Button verwerfeAktuellesPolygon = new Button("Verwerfe");
+		verwerfeAktuellesPolygon.setOnAction(event -> {
+			polygonDarstellung.getModell().verwerfePolygon();
+			polygonTabelle.refreshTabelle();
+			area.clear();
+		});
 
 		Button close = new Button("Exit");
 		close.setOnAction(event -> {
 			primaryStage.close();
 		});
-		pane.getChildren().addAll(befehl, zeichnePolygon, hilfe, close);
+		pane.getChildren().addAll(befehl, zeichnePolygon, verwerfeAktuellesPolygon, close);
 		return pane;
 	}
 

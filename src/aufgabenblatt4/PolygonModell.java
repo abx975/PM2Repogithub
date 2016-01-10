@@ -38,6 +38,16 @@ public class PolygonModell extends Observable implements Observer {
 		setChanged();
 		notifyObservers();
 	}
+	
+	/**
+	 * Methode verwirft aktuelles Polygon
+	 */
+	public void verwerfePolygon() {
+		aktuellesPolygon = new Polygon();
+		aktuellesPolygon.addObserver(this);
+		setChanged();
+		notifyObservers();
+	}
 
 	/**
 	 * Kostruktor

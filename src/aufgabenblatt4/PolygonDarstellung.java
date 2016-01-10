@@ -156,6 +156,7 @@ public class PolygonDarstellung extends Canvas implements Observer {
 			polygonZeichnung(modell.getListePolygone().get(i), Color.BLACK);
 		}
 	}
+	
 
 	@Override
 	public void update(Observable o, Object arg) {
