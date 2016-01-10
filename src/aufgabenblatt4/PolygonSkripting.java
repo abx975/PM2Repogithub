@@ -28,48 +28,48 @@ public class PolygonSkripting {
 	}
 
 	/**
-	 * Methode zum ueberpruefen, ob der eingebene Befehl ein gueltiger ist
+	 * Methode ueberprueft, ob der eingebene Befehl gueltig ist
 	 * 
-	 * @param befehl
+	 * @param eingabeBefehl
 	 *            Der eingegebene Befehl
-	 * @return Gibt die Gueltigkeit des Befehls zurueck (true oder false)
+	 * @return liefert einen Boolean für die Gueltigkeit des Befehls zurueck
 	 */
-	public boolean istGueltigerBefehl(String befehl) {
-		matcher = pattern.matcher(befehl);
+	public boolean istGueltigerBefehl(String eingabeBefehl) {
+		matcher = pattern.matcher(eingabeBefehl);
 		return matcher.matches();
 	}
 
 	/**
-	 * Methode, um aus dem Eingabe String die X-Koordinate zu extrahieren
+	 * Methode, sucht aus dem Eingabe String die X-Koordinate
 	 * 
-	 * @param befehl
+	 * @param eingabeBefehl
 	 *            Eingabe-String
 	 * @return X-Koordinate aus dem Eingabe-String
 	 * @throws Exception
-	 *             Bei falschen Befehl wird eine Exception geworfen
+	 *             Bei ungueltigem Befehl wird eine Exception geworfen
 	 */
-	public double getX(String befehl) throws Exception {
-		if (istGueltigerBefehl(befehl)) {
-			return new Double(matcher.group(3));
+	public double getX(String eingabeBefehl) throws Exception {
+		if (istGueltigerBefehl(eingabeBefehl)) {
+			return new Double(matcher.group(2));
 		} else {
 			throw new Exception("Befehl ungueltig!");
 		}
 	}
 
 	/**
-	 * Methode, um aus dem Eingabe String die X-Koordinate zu extrahieren
+	 * Methode, sucht aus dem Eingabe String die Y-Koordinate
 	 * 
-	 * @param befehl
+	 * @param eingabeBefehl
 	 *            Eingabe-String
 	 * @return Y-Koordinate aus dem Eingabe-String
 	 * @throws Exception
-	 *             Bei falschen Befehl wird eine Exception geworfen
+	 *             Bei ungueltigem Befehl wird eine Exception geworfen
 	 */
-	public double getY(String befehl) throws Exception {
-		if (istGueltigerBefehl(befehl)) {
-			return new Double(matcher.group(2));
+	public double getY(String eingabeBefehl) throws Exception {
+		if (istGueltigerBefehl(eingabeBefehl)) {
+			return new Double(matcher.group(3));
 		} else {
-			throw new Exception("Kein gueltiger Befehl!");
+			throw new Exception("Befehl ungueltig!");
 		}
 	}
 
