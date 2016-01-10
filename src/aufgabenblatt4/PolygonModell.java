@@ -33,7 +33,7 @@ public class PolygonModell extends Observable implements Observer {
 	public void neuesPolygonerstellen() {
 		aktuellesPolygon.toString();
 		polygone.add(aktuellesPolygon);
-		aktuellesPolygon = new Polygon(this);
+		aktuellesPolygon = new Polygon();
 		aktuellesPolygon.addObserver(this);
 		setChanged();
 		notifyObservers();
@@ -75,4 +75,5 @@ public class PolygonModell extends Observable implements Observer {
 	public String toString() {
 		return "Anzahl der Polygone in der Liste: " + polygone.size() + ", aktuelles " + aktuellesPolygon.toString();
 	}
+	
 }

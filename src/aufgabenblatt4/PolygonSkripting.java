@@ -52,7 +52,7 @@ public class PolygonSkripting {
 		if (istGueltigerBefehl(befehl)) {
 			return new Double(matcher.group(3));
 		} else {
-			throw new Exception("Kein gueltiger Befehl!");
+			throw new Exception("Befehl ungueltig!");
 		}
 	}
 

@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import aufgabenblatt4.Punkt;
+
 /**
  * Klasse repräsentiert die Polygone
  * 
@@ -16,14 +17,13 @@ public class Polygon extends Observable {
 	private List<Punkt> polygon;
 	private String info;
 
-	
 	public Polygon() {
 		this.polygon = new LinkedList<Punkt>();
 	}
 
-	public Polygon(Observer o) {
+	public Polygon(Observer obser) {
 		polygon = new LinkedList<Punkt>();
-		addObserver(o);
+		addObserver(obser);
 	}
 
 	/**
@@ -41,17 +41,10 @@ public class Polygon extends Observable {
 		notifyObservers();
 	}
 
-	public void movePunkt(Punkt punkt, double x, double y) {
-		punkt.setX(x);
-		punkt.setY(y);
-		setChanged();
-		notifyObservers();
-	}
-
 	/**
 	 * Getter
 	 * 
-	 * @return Gibt die Liste der Punkte zurueck
+	 * @return liefert die Liste der Punkte zurueck
 	 */
 	public List<Punkt> getPolygon() {
 		return polygon;
@@ -62,7 +55,7 @@ public class Polygon extends Observable {
 	 * 
 	 * @param index
 	 *            Index der punkte-Liste
-	 * @return Gibt die x-Koordinate an dem index zurueck
+	 * @return liefert die x-Koordinate an dem index zurueck
 	 */
 	public double getXAtIndex(int index) throws IndexOutOfBoundsException {
 		if (index >= 0 && index < polygon.size()) {
@@ -77,7 +70,7 @@ public class Polygon extends Observable {
 	 * 
 	 * @param index
 	 *            Index der punkte-Liste
-	 * @return Gibt die y-Koordinate an dem index zurueck
+	 * @return liefert die y-Koordinate an dem index zurueck
 	 */
 	public double getYAtIndex(int index) throws IndexOutOfBoundsException {
 		if (index >= 0 && index < polygon.size()) {
@@ -102,11 +95,10 @@ public class Polygon extends Observable {
 	/**
 	 * Getter
 	 * 
-	 * @return Gibt die Informationen des Polygons zurueck
+	 * @return liefert die Informationen des Polygons zurueck
 	 */
 	public String getInfo() {
 		return info;
 	}
-	
 
 }

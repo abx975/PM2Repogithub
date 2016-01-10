@@ -24,7 +24,7 @@ import javafx.scene.paint.Color;
  *
  */
 public class PolygonDarstellung extends Canvas implements Observer {
-	private GraphicsContext graphicContext;
+	private GraphicsContext graphicsContext;
 	private BorderPane root;
 	private InvalidationListener listener;
 	private PolygonModell modell;
@@ -38,8 +38,8 @@ public class PolygonDarstellung extends Canvas implements Observer {
 	 */
 	public PolygonDarstellung(BorderPane pane) {
 
-		graphicContext = getGraphicsContext2D();
-		graphicContext.setFill(Color.WHITE);
+		graphicsContext = getGraphicsContext2D();
+		graphicsContext.setFill(Color.WHITE);
 
 		pane.getChildren().add(this);
 		root = pane;
@@ -66,20 +66,20 @@ public class PolygonDarstellung extends Canvas implements Observer {
 		addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
 			@Override
-			public void handle(MouseEvent event) {
+			public void handle(MouseEvent mouseEvent) {
 				Polygon aktuellesPolygon = modell.getAktuellesPolygon();
-				aktuellesPolygon.addPunkt(event.getX(), event.getY());
-				event.consume();
+				aktuellesPolygon.addPunkt(mouseEvent.getX(), mouseEvent.getY());
+				mouseEvent.consume();
 			}
 		});
 	}
 
 	/**
-	 * Methode zum clearen des Zeichenfensters
+	 * Methode leert das Zeichenfenster
 	 */
 	public synchronized void clear() {
-		graphicContext.clearRect(0, 0, getWidth(), getHeight());
-		graphicContext.fillRect(0, 0, getWidth(), getHeight());
+		graphicsContext.clearRect(0, 0, getWidth(), getHeight());
+		graphicsContext.fillRect(0, 0, getWidth(), getHeight());
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class PolygonDarstellung extends Canvas implements Observer {
 	}
 
 	/**
-	 * Methode zeichnet das Polygons
+	 * Methode zeichnet das Polygon
 	 * 
 	 * @param polygon
 	 *            Das zu zeichnende Polygon
@@ -108,14 +108,14 @@ public class PolygonDarstellung extends Canvas implements Observer {
 	 */
 	private synchronized void polygonZeichnung(Polygon polygon, Color color) {
 		if (polygon != null) {
-			graphicContext.setStroke(color);
+			graphicsContext.setStroke(color);
 
 			for (int i = 0; i < polygon.getPolygon().size(); i++) {
 				double x1 = polygon.getXAtIndex(i);
 				double y1 = polygon.getYAtIndex(i);
 				double x2;
 				double y2;
-				graphicContext.strokeOval(x1 - 2, y1 - 2, 4, 4);
+				graphicsContext.strokeOval(x1 - 2, y1 - 2, 4, 4);
 				if (i + 1 >= polygon.getPolygon().size()) {
 					x2 = polygon.getXAtIndex(i);
 					y2 = polygon.getYAtIndex(i);
@@ -123,7 +123,7 @@ public class PolygonDarstellung extends Canvas implements Observer {
 					x2 = polygon.getXAtIndex(i + 1);
 					y2 = polygon.getYAtIndex(i + 1);
 				}
-				graphicContext.strokeLine(x1, y1, x2, y2);
+				graphicsContext.strokeLine(x1, y1, x2, y2);
 			}
 		}
 	}
@@ -141,14 +141,14 @@ public class PolygonDarstellung extends Canvas implements Observer {
 	/**
 	 * Getter
 	 * 
-	 * @return Gibt das Modell zurueck
+	 * @return liefert das Modell zurueck
 	 */
 	public PolygonModell getModell() {
 		return modell;
 	}
 
 	/**
-	 * Methode zeichnet das aktuelle Polygon wenn es fertig ist
+	 * Methode zeichnet das aktuelle Polygon, wenn es fertig ist
 	 */
 	public void zeichneFertigePolygone() {
 

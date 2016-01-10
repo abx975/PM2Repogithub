@@ -1,3 +1,4 @@
+
 package aufgabenblatt4;
 
 import javafx.application.Application;
@@ -22,7 +23,7 @@ public class Gui extends Application {
 	private Stage primaryStage;
 	private Pane pane;
 	private TableView<Polygon> tabelle;
-	private PolygonTabelle polyTabelle;
+	private PolygonTabelle polygonTabelle;
 	private TextArea area;
 	private PolygonSkripting regAusdruck = new PolygonSkripting();
 
@@ -48,8 +49,8 @@ public class Gui extends Application {
 		primaryStage.setScene(new Scene(pane, breite, hoehe));
 		PolygonModell modell = new PolygonModell(polygonDarstellung);
 		polygonDarstellung.setModell(modell);
-		polyTabelle = new PolygonTabelle(this.tabelle, modell);
-		polyTabelle.initTabelle();
+		polygonTabelle = new PolygonTabelle(this.tabelle, modell);
+		polygonTabelle.initTabelle();
 		primaryStage.show();
 	}
 
@@ -60,7 +61,7 @@ public class Gui extends Application {
 	 */
 	private Pane paneInit() {
 		BorderPane pane = new BorderPane();
-		pane.setLeft(polygonTabelle());
+		pane.setRight(polygonTabelle());
 		pane.setCenter(zeichenflaeche());
 		pane.setTop(befehlInput());
 		return pane;
@@ -69,14 +70,14 @@ public class Gui extends Application {
 	/**
 	 * Methode zum erstellen der Befehlseingabe
 	 * 
-	 * @return Gibt die Befehlseingabe als BorderPane zurueck
+	 * @return liefert die Befehlseingabe als BorderPane zurueck
 	 */
 	private Pane befehlInput() {
 		BorderPane pane = new BorderPane();
 		area = new TextArea();
-		area.setMaxHeight(50);
+		area.setMaxHeight(80);
 		pane.setCenter(area);
-		pane.setBottom(befehlButtons());
+		pane.setBottom(buttonPane());
 		return pane;
 	}
 
@@ -85,33 +86,42 @@ public class Gui extends Application {
 	 * 
 	 * @return liefert die Buttons in einer HBox zureuck
 	 */
-	private Pane befehlButtons() {
+	private Pane buttonPane() {
 		HBox pane = new HBox();
 		pane.setSpacing(5);
-		
+
 		Button hilfe = new Button("HILFE");
-		hilfe.setTooltip(new Tooltip("Um Punkte in den Zeicheneditor zu erstellen, gibt es zwei Moeglichkeiten:\n"
+		hilfe.setTooltip(new Tooltip(("Um Punkte in den Zeicheneditor zu erstellen, gibt es zwei Moeglichkeiten:\n"
 				+ "1. Moeglichkeit: Sie tippen mit der Maus in die Zeichenflaeche\n"
 				+ "2. Moeglichkeit: Sie geben im Textfenster Befehle ein.\n" + "Befehle haben folgende Struktur:\n"
-				+ "bewege -> XKoordinate , YKoordinate\n" + "Bsp.:   bewege -> 60.3, 200"));
+				+ "bewege -> XKoordinate , YKoordinate\n" + "Bsp.: bewege -> 60.3,200")));
+
+		// Button hilfe = new Button("HILFE");
+		// hilfe.setOnAction(
+		// event1 -> area.setText(("Um Punkte in den Zeicheneditor zu erstellen,
+		// gibt es zwei Moeglichkeiten:\n"
+		// + "1. Moeglichkeit: Sie tippen mit der Maus in die Zeichenflaeche\n"
+		// + "2. Moeglichkeit: Sie geben im Textfenster Befehle ein.\n"
+		// + "Befehle haben folgende Struktur:\n" + "bewege -> XKoordinate ,
+		// YKoordinate\n"
+		// + "Bsp.: bewege -> 60.3, 200")));
 
 		Button befehl = new Button("Befehl ausffuehren!");
 		befehl.setOnAction(event -> {
 			String text = area.getText();
 			try {
-				polygonDarstellung.getModell().getAktuellesPolygon().addPunkt(regAusdruck.getX(text), regAusdruck.getY(text));
+				polygonDarstellung.getModell().getAktuellesPolygon().addPunkt(regAusdruck.getX(text),
+						regAusdruck.getY(text));
 				area.clear();
 			} catch (Exception e) {
-				area.setText(e.getMessage() + " --- Bitte einen gueltigen Befehl eingeben!\n"
-						+ "-->> Siehe \"HELP\" fuer gueltige Befehle! <<--");
+				area.setText(e.getMessage() + "\nSiehe \"HILFE\" fuer gueltige Befehle!");
 			}
 		});
-		
 
 		Button zeichnePolygon = new Button("Zeichne Polygon");
 		zeichnePolygon.setOnAction(event -> {
 			polygonDarstellung.getModell().neuesPolygonerstellen();
-			polyTabelle.refreshTabelle();
+			polygonTabelle.refreshTabelle();
 			area.clear();
 		});
 
@@ -119,7 +129,7 @@ public class Gui extends Application {
 		close.setOnAction(event -> {
 			primaryStage.close();
 		});
-		pane.getChildren().addAll(befehl, hilfe, zeichnePolygon, close);
+		pane.getChildren().addAll(befehl, zeichnePolygon, hilfe, close);
 		return pane;
 	}
 
@@ -135,8 +145,7 @@ public class Gui extends Application {
 	}
 
 	/**
-	 * Methode erstellt eine Tabelle, die die gezeichneten Polygone
-	 * anzeigt
+	 * Methode erstellt eine Tabelle, die die gezeichneten Polygone anzeigt
 	 * 
 	 * @return liefert eine Tabelle als BorderPane zurueck
 	 */
