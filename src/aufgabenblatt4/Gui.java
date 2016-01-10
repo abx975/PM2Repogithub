@@ -103,7 +103,7 @@ public class Gui extends Application {
 						regAusdruck.getY(text));
 				area.clear();
 			} catch (Exception e) {
-				area.setText(e.getMessage() + "\nSiehe \"HILFE\" fuer gueltige Befehle!");
+				area.setText(e.getMessage());
 			}
 			
 		});
