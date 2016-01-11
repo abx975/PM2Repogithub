@@ -37,10 +37,10 @@ public class PolygonTabelle {
 		tabelle.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		List<Polygon> polygone = new ArrayList<Polygon>(modell.getListePolygone());
 		final ObservableList<Polygon> daten = FXCollections.observableArrayList(polygone);
-		TableColumn<Polygon, String> polys = new TableColumn<>("Polygone");
-		polys.setCellValueFactory(new PropertyValueFactory<>("info"));
+		TableColumn<Polygon, String> polygonSpalte = new TableColumn<>("Polygone");
+		polygonSpalte.setCellValueFactory(new PropertyValueFactory<>("info"));
 		tabelle.setItems(daten);
-		tabelle.getColumns().add(polys);
+		tabelle.getColumns().add(polygonSpalte);
 	}
 
 	/**

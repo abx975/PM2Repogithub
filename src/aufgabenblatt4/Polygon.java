@@ -3,7 +3,6 @@ package aufgabenblatt4;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
 
 import aufgabenblatt4.Punkt;
 
@@ -19,11 +18,6 @@ public class Polygon extends Observable {
 
 	public Polygon() {
 		this.polygon = new LinkedList<Punkt>();
-	}
-
-	public Polygon(Observer obser) {
-		polygon = new LinkedList<Punkt>();
-		addObserver(obser);
 	}
 
 	/**

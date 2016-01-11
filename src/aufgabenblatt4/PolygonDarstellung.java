@@ -39,7 +39,7 @@ public class PolygonDarstellung extends Canvas implements Observer {
 	public PolygonDarstellung(BorderPane pane) {
 
 		graphicsContext = getGraphicsContext2D();
-		graphicsContext.setFill(Color.WHITE);
+		graphicsContext.setFill(Color.SNOW);
 
 		pane.getChildren().add(this);
 		root = pane;
@@ -77,7 +77,7 @@ public class PolygonDarstellung extends Canvas implements Observer {
 	/**
 	 * Methode leert das Zeichenfenster
 	 */
-	public synchronized void clear() {
+	public void clear() {
 		graphicsContext.clearRect(0, 0, getWidth(), getHeight());
 		graphicsContext.fillRect(0, 0, getWidth(), getHeight());
 	}
@@ -96,7 +96,7 @@ public class PolygonDarstellung extends Canvas implements Observer {
 	 * @param polygon
 	 *            Das zu zeichnende Polygon
 	 */
-	public synchronized void zeichnePolygon(Polygon polygon) {
+	public void zeichnePolygon(Polygon polygon) {
 		polygonZeichnung(polygon, Color.ORANGE);
 	}
 
@@ -106,7 +106,7 @@ public class PolygonDarstellung extends Canvas implements Observer {
 	 * @param polygon
 	 *            Das zu zeichnende Polygon
 	 */
-	private synchronized void polygonZeichnung(Polygon polygon, Color color) {
+	private void polygonZeichnung(Polygon polygon, Color color) {
 		if (polygon != null) {
 			graphicsContext.setStroke(color);
 
@@ -134,7 +134,7 @@ public class PolygonDarstellung extends Canvas implements Observer {
 	 * @param modell
 	 *            Das Referenz-Modell
 	 */
-	public synchronized void setModell(PolygonModell modell) {
+	public void setModell(PolygonModell modell) {
 		this.modell = modell;
 	}
 
@@ -153,10 +153,9 @@ public class PolygonDarstellung extends Canvas implements Observer {
 	public void zeichneFertigePolygone() {
 
 		for (int i = 0; i < modell.getListePolygone().size(); i++) {
-			polygonZeichnung(modell.getListePolygone().get(i), Color.BLACK);
+			polygonZeichnung(modell.getListePolygone().get(i), Color.GREEN);
 		}
 	}
-	
 
 	@Override
 	public void update(Observable o, Object arg) {

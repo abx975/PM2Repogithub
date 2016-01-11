@@ -1,4 +1,3 @@
-
 package aufgabenblatt4;
 
 import javafx.application.Application;
@@ -105,7 +104,7 @@ public class Gui extends Application {
 			} catch (Exception e) {
 				area.setText(e.getMessage());
 			}
-			
+
 		});
 
 		Button zeichnePolygon = new Button("Zeichne Polygon");
@@ -114,7 +113,7 @@ public class Gui extends Application {
 			polygonTabelle.refreshTabelle();
 			area.clear();
 		});
-		
+
 		Button verwerfeAktuellesPolygon = new Button("Verwerfe");
 		verwerfeAktuellesPolygon.setOnAction(event -> {
 			polygonDarstellung.getModell().verwerfePolygon();

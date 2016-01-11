@@ -20,7 +20,7 @@ public class PolygonModell extends Observable implements Observer {
 	/**
 	 * Liste der Polygone
 	 */
-	private List<Polygon> polygone = new ArrayList<Polygon>();
+	private List<Polygon> polygone;
 	/**
 	 * aktuelles Polygon
 	 */
@@ -38,7 +38,7 @@ public class PolygonModell extends Observable implements Observer {
 		setChanged();
 		notifyObservers();
 	}
-	
+
 	/**
 	 * Methode verwirft aktuelles Polygon
 	 */
@@ -53,7 +53,9 @@ public class PolygonModell extends Observable implements Observer {
 	 * Kostruktor
 	 */
 	public PolygonModell(Observer o) {
-		aktuellesPolygon = new Polygon(this);
+		polygone = new ArrayList<Polygon>();
+		aktuellesPolygon = new Polygon();
+		aktuellesPolygon.addObserver(this);
 		addObserver(o);
 	}
 
@@ -83,7 +85,7 @@ public class PolygonModell extends Observable implements Observer {
 
 	@Override
 	public String toString() {
-		return "Anzahl der Polygone in der Liste: " + polygone.size() + ", aktuelles " + aktuellesPolygon.toString();
+		return "Anzahl der Polygone: " + polygone.size() + ", aktuelles:" + aktuellesPolygon.toString();
 	}
-	
+
 }
